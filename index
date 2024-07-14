@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Learn Cantonese</title>
+  <meta charset="UTF-8">
+  <style>
+    /* Same CSS as before */
+  </style>
+</head>
+<body>
+  <div class="flashcard-container">
+    <div id="cantonese-phrase"></div>
+    <button onclick="showPinyin()">Show Pinyin</button>
+    <div id="pinyin"></div>
+    <button onclick="showEnglish()">Show English</button>
+    <div id="english"></div>
+    <button onclick="nextPhrase()">Next</button>
+  </div>
+
+  <table style="display: none;">
+    <thead>
+      <tr>
+        <th>Cantonese</th>
+        <th>Pinyin</th>
+        <th>English</th>
+      </tr>
+    </thead>
+    <tbody id="phrase-table">
+      <tr>
+        <td>你好</td>
+        <td>néih hóu</td>
+        <td>Hello</td>
+      </tr>
+      <tr>
+        <td>唔該</td>
+        <td>m̀h góy</td>
+        <td>Thank you</td>
+      </tr>
+      <tr>
+        <td>再見</td>
+        <td>jói gin</td>
+        <td>Goodbye</td>
+      </tr>
+      <!-- Add more phrases here -->
+    </tbody>
+  </table>
+
+  <script>
+    const phraseTable = document.getElementById("phrase-table");
+    const phrases = [];
+
+    // Extract data from the table
+    for (let i = 0; i < phraseTable.rows.length; i++) {
+      const row = phraseTable.rows[i];
+      phrases.push({
+        cantonese: row.cells[0].textContent,
+        pinyin: row.cells[1].textContent,
+        english: row.cells[2].textContent,
+      });
+    }
+
+    let currentPhraseIndex = 0;
+    const cantoneseElement = document.getElementById("cantonese-phrase");
+    const pinyinElement = document.getElementById("pinyin");
+    const englishElement = document.getElementById("english");
+
+    // ... (rest of the JavaScript code is the same)
+  </script>
+</body>
+</html>
