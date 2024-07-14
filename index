@@ -4,67 +4,96 @@
   <title>Learn Cantonese</title>
   <meta charset="UTF-8">
   <style>
-    /* Same CSS as before */
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .flashcard-container {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    #cantonese-phrase {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    #pinyin, #english {
+      font-size: 18px;
+      display: none;
+      margin-bottom: 10px;
+    }
+
+    #pinyin {
+      font-style: italic;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
   </style>
 </head>
 <body>
   <div class="flashcard-container">
-    <div id="cantonese-phrase"></div>
+    <div id="cantonese-phrase">廣東話</div>
     <button onclick="showPinyin()">Show Pinyin</button>
-    <div id="pinyin"></div>
+    <div id="pinyin">gwóng dūng wá</div>
     <button onclick="showEnglish()">Show English</button>
-    <div id="english"></div>
+    <div id="english">Cantonese</div>
     <button onclick="nextPhrase()">Next</button>
   </div>
 
-  <table style="display: none;">
-    <thead>
-      <tr>
-        <th>Cantonese</th>
-        <th>Pinyin</th>
-        <th>English</th>
-      </tr>
-    </thead>
-    <tbody id="phrase-table">
-      <tr>
-        <td>你好</td>
-        <td>néih hóu</td>
-        <td>Hello</td>
-      </tr>
-      <tr>
-        <td>唔該</td>
-        <td>m̀h góy</td>
-        <td>Thank you</td>
-      </tr>
-      <tr>
-        <td>再見</td>
-        <td>jói gin</td>
-        <td>Goodbye</td>
-      </tr>
-      <!-- Add more phrases here -->
-    </tbody>
-  </table>
-
   <script>
-    const phraseTable = document.getElementById("phrase-table");
-    const phrases = [];
-
-    // Extract data from the table
-    for (let i = 0; i < phraseTable.rows.length; i++) {
-      const row = phraseTable.rows[i];
-      phrases.push({
-        cantonese: row.cells[0].textContent,
-        pinyin: row.cells[1].textContent,
-        english: row.cells[2].textContent,
-      });
-    }
+    const phrases = [
+      { cantonese: "你好", pinyin: "néih hóu", english: "Hello" },
+      { cantonese: "唔該", pinyin: "m̀h góy", english: "Thank you" },
+      { cantonese: "再見", pinyin: "jói gin", english: "Goodbye" }
+      // Add more phrases here
+    ];
 
     let currentPhraseIndex = 0;
     const cantoneseElement = document.getElementById("cantonese-phrase");
     const pinyinElement = document.getElementById("pinyin");
     const englishElement = document.getElementById("english");
 
-    // ... (rest of the JavaScript code is the same)
+    function showPinyin() {
+      pinyinElement.style.display = "block";
+    }
+
+    function showEnglish() {
+      englishElement.style.display = "block";
+    }
+
+    function nextPhrase() {
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+      const currentPhrase = phrases[currentPhraseIndex];
+
+      cantoneseElement.textContent = currentPhrase.cantonese;
+      pinyinElement.textContent = currentPhrase.pinyin;
+      englishElement.textContent = currentPhrase.english;
+
+      pinyinElement.style.display = "none";
+      englishElement.style.display = "none";
+    }
+
+    // Initialize the first phrase
+    nextPhrase();
   </script>
 </body>
 </html>
